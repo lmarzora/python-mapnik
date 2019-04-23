@@ -42,6 +42,7 @@ Several things happen when you do:
 import itertools
 import os
 import warnings
+import ctypes, ctypes.util
 try:
     import json
 except ImportError:
@@ -61,13 +62,12 @@ def bootstrap_env():
 
         env = {'ICU_DATA':'/usr/local/share/icu/'}
     """
-    if os.path.exists(os.path.join(
-            os.path.dirname(__file__), 'mapnik_settings.py')):
-        from .mapnik_settings import env
-        process_keys = os.environ.keys()
-        for key, value in env.items():
-            if key not in process_keys:
-                os.environ[key] = value
+    from .mapnik_settings import env
+    process_keys = os.environ.keys()
+    for key, value in env.items():
+        if key not in process_keys:
+            ctypes.cdll[ctypes.util.find_msvcrt()]._putenv("%s=%s"%(key,value))
+            os.environ[key] = value
 
 bootstrap_env()
 

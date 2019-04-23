@@ -48,6 +48,8 @@
 #include <mapnik/util/geometry_to_geojson.hpp> // to_geojson
 #include <mapnik/util/geometry_to_wkb.hpp> // to_wkb
 #include <mapnik/util/geometry_to_wkt.hpp> // to_wkt
+#include <mapnik/wkt/wkt_grammar_impl.hpp>
+#include <mapnik/wkt/wkt_generator_grammar_impl.hpp>
 //#include <mapnik/util/geometry_to_svg.hpp>
 #include <mapnik/wkb.hpp>
 
